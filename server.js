@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 
-  app.get('*', function(req, res) {
+  app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
@@ -29,7 +29,7 @@ app.post('/payment', (req, res) => {
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,
-    currency: 'usd'
+    currency: 'usd',
   };
 
   stripe.charges.create(body, (stripeErr, stripeRes) => {
